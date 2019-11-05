@@ -20,7 +20,6 @@ export default {
   layout: 'login',
   data () {
     return {
-      is: 'index',
       errors: [],
       alert: '',
       // Form
@@ -28,49 +27,9 @@ export default {
         // Tokens
         accessToken: null,
         authToken: null,
-        // Base
-        registerCompany: false,
         uid: null,
-        email: null,
-        password: null,
-        // Register User
-        name: null,
-        lastName: null,
-        phone: null,
-        company: {
-          nit: null,
-          nitExt: null,
-          bussinessName: null,
-          address: null,
-          phoneCompany: null,
-          emailCompany: null,
-          website: null,
-          pep: null,
-          ciiu: null,
-          description: null,
-          typeCompanyId: null,
-          cityId: null
-        }
-      },
-      // Validate
-      emailValue: '',
-      // Result
-      result: 'Result',
-      tempData: {
-        location: {
-          countries: null,
-          states: null,
-          cities: null
-        }
+        email: null
       }
-    }
-  },
-  computed: {
-    layout () {
-      const layout = this.$store.getters.layout
-      // his.$store.getters.layout
-      // this.is = tempLayout
-      return layout
     }
   },
   async created () {
