@@ -16,7 +16,7 @@
           </v-btn>
         </div>
         <div class="my-2">
-          <v-btn depressed large class="btn-storent-second" to="/signup">
+          <v-btn depressed large class="btn-storent-second" to="/signup-intro">
             Registrate
           </v-btn>
         </div>

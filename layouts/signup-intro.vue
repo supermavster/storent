@@ -9,17 +9,12 @@
             </a>
           </v-row>
           <v-row id="content" align="center" justify="center">
-            <v-col cols="4" sm="4" md="4" class="mx-1 main-box">
-              <img
-                class="boxs-second"
-                src="../assets/images/main-boxs.png"
-                height="auto"
-                width="90%"
-              >
-            </v-col>
-            <v-col cols="7" sm="7" md="7" class="main-box">
-              <div class="circle-second" style="left: 35%" />
+            <v-col cols="4" sm="4" md="4" class="mx-1">
               <nuxt />
+            </v-col>
+            <v-col cols="6" sm="6" md="6" class="main-box">
+              <div class="circle" />
+              <img class="boxs" src="../assets/images/main-boxs.png" width="100%" height="auto">
             </v-col>
           </v-row>
         </v-col>
@@ -31,7 +26,8 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+    }
   }
 }
 </script>

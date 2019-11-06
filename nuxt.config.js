@@ -44,7 +44,9 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    // Uso simple
+    ['cookie-universal-nuxt', { alias: 'cookie' }]
   ],
   /*
    ** Axios module configuration
@@ -87,6 +89,7 @@ export default {
   env: {
     SHORT_NAME: 'ST',
     URL_API: 'http://devapi.storent.co/v1/',
-    URL_IMG: 'http://devapi.storent.co/'
+    URL_IMG: 'http://devapi.storent.co/',
+    VERSION: 1.0
   }
 }

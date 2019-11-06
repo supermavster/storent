@@ -75,6 +75,9 @@ export const actions = {
       const dataSend = new FormData()
       dataSend.append('email', form.email)
       dataSend.append('password', form.password)
+      dataSend.append('serviceId', 5)
+      dataSend.append('version', process.env.VERSION)
+
       // Make Actions
       axios
         .post(process.env.URL_API + 'auth/login', dataSend, config)
