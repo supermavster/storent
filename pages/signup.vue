@@ -1,102 +1,100 @@
 <template>
   <v-layout>
     <v-flex class="text-center">
-      <v-subheader>Standard</v-subheader>
-
       <!--  Error Elements -->
       <div>
         <v-alert
           v-if="alert !== ''"
-          prominent
           type="error"
           icon="mdi-alert-circle"
-          colored-border
-          class="text-error"
+          transition="scale-transition"
         >
           {{ alert }}
+        </v-alert>
+        <v-alert
+          v-if="success !== ''"
+          type="success"
+          transition="scale-transition"
+        >
+          {{ success }}
         </v-alert>
       </div>
       <v-col class="text-center" cols="12" sm="12">
         <div style>
           <v-text-field
             v-model="form.name"
+            single-line
             color="white"
             label="Nombre"
             required
+            :rules="[rules.requiredSingle]"
           />
           <v-text-field
             v-model="form.lastName"
+            single-line
             color="white"
             label="Apellidos"
             required
+            :rules="[rules.requiredSingle]"
           />
           <v-text-field
             v-model="form.email"
+            single-line
             color="white"
             label="Correo electronico"
             required
+            :rules="[rules.requiredSingle]"
           />
           <v-text-field
             v-model="form.phone"
-            :rules="[rules.number]"
             single-line
             color="white"
             label="Celular"
             required
+            :rules="[rules.requiredSingle]"
           />
           <v-text-field
             v-model="form.password"
-            :rules="[rules.password]"
+            single-line
             color="white"
             label="Contraseña"
             required
+            :rules="[rules.requiredSingle]"
           />
           <v-text-field
             v-model="form.passwordRepet"
-            :rules="[rules.password, rules.passwordRepet]"
             color="white"
             label="Confirmar contraseña"
             required
+            single-line
+            :rules="[rules.requiredSingle]"
           />
-          <v-checkbox
-            v-model="form.checkbox"
-            :rules="[rules.required]"
-            value="1"
-            label="Option"
-            data-vv-name="checkbox"
-            type="checkbox"
-            required
-          />
+
+          <v-col class="text-left" cols="12" sm="12">
+            <v-checkbox
+              v-model="form.checkbox"
+              single-line
+              value="1"
+              label="Acepta términos y condiciones"
+              data-vv-name="checkbox"
+              type="checkbox"
+              required
+              style="height:25px"
+            />
+            <v-btn text small color="primary" class="mx-5">
+              Leer terminos y condiciones
+            </v-btn>
+          </v-col>
         </div>
-        <!-- Register -->
-        <div style="display:none">
-          <v-text-field label="NIT" required />
-          <v-text-field label="NIT EXT" required />
-          <v-text-field label="Razon Social" required />
-          <v-text-field label="Dirección" required />
-          <v-text-field label="Celular/Teléfono de la Compañia" required />
-          <v-text-field label="E-Mail de la Compañia" required />
-          <v-text-field label="Web Site" required />
-          <v-text-field label="PEP" required />
-          <v-text-field label="CIIU" required />
-          <v-text-field label="Descripción" required />
-          <v-text-field label="Tipo de Compañia" required />
-          <v-menu transition="slide-y-transition">
-            <template>
-              <v-btn color="white" class="ma-2">
-                Slide Y Transition
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item link>
-                <v-list-item-title />
-              </v-list-item>
-            </v-list>
-          </v-menu>
-          <v-text-field label="ID Ciudad" required />
-        </div>
-        <v-btn class="mr-4">
-          Registrar
+        <!-- Continue -->
+        <v-btn
+          id="register-user"
+          :disabled="disabledButton"
+          :loading="loadingButton"
+          class="mr-4"
+          @click="registerUser($event)"
+        >
+          Continuar
         </v-btn>
       </v-col>
     </v-flex>
@@ -112,7 +110,10 @@ export default {
     return {
       errors: [],
       alert: '',
+      success: '',
       // Form
+      disabledButton: false,
+      loadingButton: false,
       showPassword: false,
       form: {
         // Tokens
@@ -128,25 +129,29 @@ export default {
       },
       // Validation
       rules: {
-        required: (value) => {
-          const response =
-            !!value || 'Este campo es requerido.'
-          if (typeof response === 'string' || response instanceof String) { this.alert = response }
+        requiredSingle: (value) => {
+          const response = !!value || 'Este campo es requerido.'
+          return response
+        },
+        required: (value, field) => {
+          const response = !!value || 'El ' + field + ' es requerido.'
+          this.showAlert(response)
           return response
         },
         email: (value) => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           const response =
             pattern.test(value) || 'Correo electronico invalido.'
-          if (typeof response === 'string' || response instanceof String) { this.alert = response }
+          this.showAlert(response)
+
           return response
         },
-        number: (value) => {
+        number: (value, field) => {
           const pattern = /^[0-9]+$/
           const response =
             pattern.test(value) ||
-            'Este campo debe contener valores númericos.'
-          if (typeof response === 'string' || response instanceof String) { this.alert = response }
+            'El ' + field + ' debe contener valores númericos.'
+          this.showAlert(response)
           return response
         },
         password: (value) => {
@@ -154,15 +159,13 @@ export default {
           const response =
             pattern.test(value) ||
             'La contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.'
-          if (typeof response === 'string' || response instanceof String) { this.alert = response }
+          this.showAlert(response)
           return response
         },
         passwordRepet: (value) => {
           const checkValues = value === this.form.password
-          const response =
-            checkValues ||
-            'La contraseña debe tener mínimo ocho caracteres, al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.'
-          if (typeof response === 'string' || response instanceof String) { this.alert = response }
+          const response = checkValues || 'Las contraseñas no son iguales.'
+          this.showAlert(response)
           return response
         }
       }
@@ -175,18 +178,64 @@ export default {
     async initProcess () {
       const accessToken = await this.$store.dispatch(`getAccessToken`)
       this.form.accessToken = accessToken
+    },
+    showAlert (response) {
+      if (typeof response === 'string' || response instanceof String) {
+        this.alert = response
+      }
+    },
+    registerUser (event) {
+      event.preventDefault()
+      // Check Values
+      let check = false
+      check += this.rules.passwordRepet(this.form.passwordRepet)
+      check += this.rules.password(this.form.password)
+      check += this.rules.number(this.form.phone, 'Telefóno')
+      check += this.rules.email(this.form.email)
+      check += this.rules.required(this.form.lastName, 'Apellidos')
+      check += this.rules.required(this.form.name, 'Nombre')
+      // Set Post
+      if (typeof check === 'string' || check instanceof String || check < 6) {
+        this.disabledButton = false
+        return
+      }
+
+      this.loadingButton = true
+      this.disabledButton = true
+      this.$store
+        .dispatch(`register`, this.form)
+        .then((response) => {
+          if (response.code === 100) {
+            // Get Access Token
+            this.$cookie.set('uid', response.data.uid)
+            this.uid = response.data.uid
+            this.success = response.data.message
+            // console.log(response)
+            // Change View
+            this.$router.push({ path: '/signup-intro-company', force: true })
+          } else {
+            this.alert = response.data.message
+          }
+          // this.loadingButton = false
+        })
+        .catch((error) => {
+          this.errors.push(error)
+          if (error.response) {
+            if (error.response.status === 400) {
+              this.alert = error.response.data.data.message
+            }
+          }
+          this.loadingButton = false
+          this.disabledButton = false
+        })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-  border-color: grey;
-}
-
-.theme--light.v-input:not(.v-input--is-disabled) input,
-.theme--light.v-input:not(.v-input--is-disabled) textarea {
-  color: grey;
+.v-application .white--text {
+  color: gray !important;
+  caret-color: gray !important;
 }
 </style>

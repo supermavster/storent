@@ -97,6 +97,9 @@ $second-color: #30242d !important;
   &-second {
     background-image: url("../assets/images/background-second.png");
   }
+  &-info {
+    background-image: url("../assets/images/background-info.png");
+  }
 }
 
 .title-storent {
@@ -118,6 +121,11 @@ $second-color: #30242d !important;
   color: red !important;
 }
 
-#content {
-  height: 70%;
+// #content {
+//   height: 70%;
+// }
+
+.v-application .white--text {
+  color: gray !important;
+  caret-color: gray !important;
 }
