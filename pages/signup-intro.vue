@@ -26,3 +26,6 @@ export default {
   layout: 'signup-intro'
 }
 </script>
+
+<style lang="scss" scoped>
+</style>

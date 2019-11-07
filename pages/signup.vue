@@ -190,7 +190,7 @@ export default {
       let check = false
       check += this.rules.passwordRepet(this.form.passwordRepet)
       check += this.rules.password(this.form.password)
-      check += this.rules.number(this.form.phone, 'Telefóno')
+      check += this.rules.number(this.form.phone, 'Celular')
       check += this.rules.email(this.form.email)
       check += this.rules.required(this.form.lastName, 'Apellidos')
       check += this.rules.required(this.form.name, 'Nombre')

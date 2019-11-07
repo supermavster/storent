@@ -13,12 +13,12 @@
           <br>De lo contrario solo tendras acceso a la información de las bodegas publicadas.
         </div>
         <div class="my-2">
-          <v-btn depressed large class="btn-storent-second" to="/signup">
+          <v-btn depressed large class="btn-storent-second" to="/signup-company">
             Registrar la empresa
           </v-btn>
         </div>
         <div class="my-2">
-          <v-btn depressed large class="btn-storent-second" to="/signup">
+          <v-btn depressed large class="btn-storent-second" to="/home">
             Continuar a Storent
           </v-btn>
         </div>
@@ -32,3 +32,6 @@ export default {
   layout: 'information'
 }
 </script>
+
+<style lang="scss" scoped>
+</style>
