@@ -1,58 +1,49 @@
 <template>
   <v-row>
     <v-col cols="12" sm="12" offset-sm="12">
-      <v-card>
-        <v-container fluid>
-          <v-row v-if="categories">
-            <div v-for="item in categories" :key="item.categoryId">
-              <div id="background-category">
-                <a class="link-categories" href="#">
-                  <p>{{ item.name }}</p>
-                </a>
-              </div>
-              <div v-for="product in item.products" :key="product.productId">
-                <p>{{ product.name }}</p>
-              </div>
-            </div>
-          </v-row>
-          <v-row v-else>
-            No existen categorias registradas aun.
-          </v-row>
-          <v-row>
-            <v-col cols="12" sm="12" offset-sm="12">
-              <v-card>
-                <v-container fluid>
-                  <h1>Vue Carousel</h1>
-                  <div class="card-carousel-wrapper">
+      <v-container fluid>
+        <v-row>
+          <v-col cols="12" sm="12" offset-sm="12">
+            <v-container fluid>
+              <div class="card-carousel-wrapper">
+                <div
+                  class="card-carousel--nav__left"
+                  :disabled="atHeadOfList"
+                  @click="moveCarousel(-1)"
+                />
+                <div class="card-carousel">
+                  <div class="card-carousel--overflow-container">
                     <div
-                      class="card-carousel--nav__left"
-                      :disabled="atHeadOfList"
-                      @click="moveCarousel(-1)"
-                    />
-                    <div class="card-carousel">
-                      <div class="card-carousel--overflow-container">
-                        <div
-                          class="card-carousel-cards"
-                          :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}"
-                        >
-                          <div v-for="item in items" :key="item.name" class="card-carousel--card">
-                            <img src="https://placehold.it/200x200">
-                            <div class="card-carousel--card--footer">
-                              <p>{{ item.name }}</p>
-                              <p>{{ item.tag }}</p>
-                            </div>
-                          </div>
+                      class="card-carousel-cards"
+                      :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}"
+                    >
+                      <div
+                        v-for="item in categories"
+                        :key="item.categoryId"
+                        class="card-carousel--card"
+                      >
+                        <div id="background-category">
+                          <a class="link-categories" href="#">
+                            <p>{{ item.name }}</p>
+                          </a>
+                        </div>
+                        <div v-for="product in item.products" :key="product.productId">
+                          <p>{{ product.name }}</p>
                         </div>
                       </div>
                     </div>
-                    <div class="card-carousel--nav__right" :disabled="atEndOfList" @click="moveCarousel(1)" />
                   </div>
-                </v-container>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
+                </div>
+                <div
+                  class="card-carousel--nav__right"
+                  :disabled="atEndOfList"
+                  @click="moveCarousel(1)"
+                />
+              </div>
+            </v-container>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-col>
   </v-row>
 </template>
@@ -65,32 +56,17 @@ export default {
       alert: '',
       // Form
       accessToken: null,
-      categories: null,
-      // Carousel
-      colors: ['primary', 'secondary', 'yellow darken-2', 'red', 'orange'],
-      model: 0,
-      showArrows: true,
-      hideDelimiters: true,
-      cycle: true,
+      categories: [],
       currentOffset: 0,
-      windowSize: 3,
-      paginationFactor: 220,
-      items: [
-        { name: 'Tycoon Thai', tag: 'Thai' },
-        { name: 'Ippudo', tag: 'Japanese' },
-        { name: 'Milano', tag: 'Pizza' },
-        { name: 'Tsing Tao', tag: 'Chinese' },
-        { name: 'Frances', tag: 'French' },
-        { name: 'Burma Superstar', tag: 'Burmese' },
-        { name: 'Salt and Straw', tag: 'Ice cream' }
-      ]
+      windowSize: 13,
+      paginationFactor: 220
     }
   },
   computed: {
     atEndOfList () {
       return (
         this.currentOffset <=
-        this.paginationFactor * -1 * (this.items.length - this.windowSize)
+        this.paginationFactor * -1 * (this.categories.length - this.windowSize)
       )
     },
     atHeadOfList () {
@@ -170,12 +146,6 @@ export default {
   position: absolute;
   width: 100%;
 }
-
-body {
-  background: #f8f8f8;
-  color: #2c3e50;
-  font-family: "Source Sans Pro", sans-serif;
-}
 .card-carousel-wrapper {
   display: flex;
   align-items: center;
@@ -186,7 +156,7 @@ body {
 .card-carousel {
   display: flex;
   justify-content: center;
-  width: 640px;
+  width: 100%;
 }
 .card-carousel--overflow-container {
   overflow: hidden;
@@ -229,8 +199,8 @@ body {
 .card-carousel-cards .card-carousel--card {
   margin: 0 10px;
   cursor: pointer;
-  box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
-    0 2px 2px 0 rgba(40, 44, 53, 0.08);
+//   box-shadow: 0 4px 15px 0 rgba(40, 44, 53, 0.06),
+    // 0 2px 2px 0 rgba(40, 44, 53, 0.08);
   background-color: #fff;
   border-radius: 4px;
   z-index: 3;
@@ -298,12 +268,5 @@ body {
   border-radius: 2px;
   background: white;
   box-shadow: 0px 0px 0px #004977;
-}
-h1 {
-  font-size: 3.6em;
-  font-weight: 100;
-  text-align: center;
-  margin-bottom: 0;
-  color: #42b883;
 }
 </style>
