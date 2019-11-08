@@ -178,7 +178,7 @@
 // import { ValidationProvider, extend } from 'vee-validate'
 
 export default {
-  layout: 'signup',
+  layout: 'onboarding/signup',
   data () {
     return {
       errors: [],
@@ -376,7 +376,7 @@ export default {
 
       this.pep.check.yes = this.pep.yes
       this.pep.check.no = this.pep.no
-      console.log(this.pep)
+      // console.log(this.pep)
     },
     registerCompany (event) {
       event.preventDefault()
@@ -409,6 +409,10 @@ export default {
         return
       }
 
+      // Data
+      this.form.uid = this.$cookie.get('uid')
+      this.form.cityId = this.form.location.city.cityId
+
       this.loadingButton = true
       this.disabledButton = true
       this.$store
@@ -418,7 +422,7 @@ export default {
             // Get Access Token
             // this.uid = response.data
             this.success = response.data.message
-            console.log(response)
+            // console.log(response)
             // Change View
             // this.$router.push({ path: '/signup-intro-company', force: true })
           } else {

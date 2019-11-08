@@ -115,22 +115,36 @@ export const actions = {
       const config = actions.makeHeader(0, form.accessToken) // Access Token
       // /*Create formdata*/
       const dataSend = new FormData()
-      dataSend.append('uid', '2c727f2550ac4817fafaa0e99e80f2a8')
-      dataSend.append('nit', '8888888888')
-      dataSend.append('nitExt', '1')
-      dataSend.append('bussinessName', 'Kubo S.A.S.')
-      dataSend.append('address', 'Calle falsa 123')
-      dataSend.append('phoneCompany', '3122333444')
-      dataSend.append('emailCompany', 'miguel@kubo.co')
-      dataSend.append('website', 'kubo.co')
-      dataSend.append('pep', '1')
-      dataSend.append('ciiu', '80')
-      dataSend.append(
-        'description',
-        'Incidunt qui et sit natus mollitia sit impedit optio. Magni voluptas occaecati enim cupiditate accusantium doloremque. Amet ab et officia qui quia laboriosam et quos. Ut iste ea voluptatem consequatur. Non corporis qui ut. Veniam sit non sed similique debitis voluptatibus. Atque dolor ex laborum. Cumque dicta aut eum laborum possimus atque voluptatum. Libero sint consequuntur voluptatem molestias quas. Non ut sed non aliquid quod omnis rerum. Ea sit non libero soluta alias.'
-      )
-      dataSend.append('typeCompanyId', '2')
-      dataSend.append('cityId', '9609540')
+      dataSend.append('uid', form.uid)
+      dataSend.append('nit', form.nit)
+      dataSend.append('nitExt', form.nitExt)
+      dataSend.append('bussinessName', form.bussinessName)
+      dataSend.append('address', form.address)
+      dataSend.append('phoneCompany', form.phoneCompany)
+      dataSend.append('website', form.website)
+      dataSend.append('emailCompany', form.emailCompany)
+      dataSend.append('pep', form.pep)
+      dataSend.append('ciiu', form.ciiu)
+      dataSend.append('description', form.description)
+      dataSend.append('typeCompanyId', form.typeCompanyId)
+      dataSend.append('cityId', form.cityId)
+      // Data User
+      // dataSend.append('uid', '2c727f2550ac4817fafaa0e99e80f2a8')
+      // dataSend.append('nit', '8888888888')
+      // dataSend.append('nitExt', '1')
+      // dataSend.append('bussinessName', 'Kubo S.A.S.')
+      // dataSend.append('address', 'Calle falsa 123')
+      // dataSend.append('phoneCompany', '3122333444')
+      // dataSend.append('emailCompany', 'miguel@kubo.co')
+      // dataSend.append('website', 'kubo.co')
+      // dataSend.append('pep', '1')
+      // dataSend.append('ciiu', '80')
+      // dataSend.append(
+      //   'description',
+      //   'Incidunt qui et sit natus mollitia sit impedit optio. Magni voluptas occaecati enim cupiditate accusantium doloremque. Amet ab et officia qui quia laboriosam et quos. Ut iste ea voluptatem consequatur. Non corporis qui ut. Veniam sit non sed similique debitis voluptatibus. Atque dolor ex laborum. Cumque dicta aut eum laborum possimus atque voluptatum. Libero sint consequuntur voluptatem molestias quas. Non ut sed non aliquid quod omnis rerum. Ea sit non libero soluta alias.'
+      // )
+      // dataSend.append('typeCompanyId', '2')
+      // dataSend.append('cityId', '9609540')
       axios
         .post(process.env.URL_API + 'auth/register/company', dataSend, config)
         .then(function (json) {

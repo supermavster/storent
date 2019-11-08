@@ -105,7 +105,7 @@
 // import { ValidationProvider, extend } from 'vee-validate'
 
 export default {
-  layout: 'signup',
+  layout: 'onboarding/signup',
   data () {
     return {
       errors: [],

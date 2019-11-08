@@ -7,42 +7,6 @@
 $main-color: #ff0062 !important;
 $second-color: #30242d !important;
 
-@font-face {
-  font-family: "Darker Grotesque";
-  font-style: normal;
-  font-display: swap;
-  src: url(http://devapi.storent.co/fonst/DarkerGrotesque-Light.ttf)
-    format("ttf");
-}
-
-@font-face {
-  font-family: "Darker Grotesque Bold";
-  font-style: normal;
-  font-weight: bolder;
-  font-display: swap;
-  src: url(http://devapi.storent.co/fonst/DarkerGrotesque-Bold.ttf)
-    format("ttf");
-}
-
-// Buttons
-.btn-storent {
-  &-main {
-    color: white !important;
-    background-color: $main-color;
-  }
-  &-second {
-    color: white !important;
-    background-color: $second-color;
-    background-size: cover;
-  }
-}
-
-// A href
-.link-storent {
-  color: $main-color;
-  text-decoration: none;
-}
-
 /// Circle Template
 .circle {
   width: 1577px;
@@ -67,11 +31,6 @@ $second-color: #30242d !important;
   }
 }
 
-.main-box {
-  // max-width: 375px;
-  // overflow: hidden;
-}
-
 .boxs {
   position: relative;
   z-index: 2;
@@ -92,38 +51,19 @@ $second-color: #30242d !important;
   background: white;
 
   &-main {
-    background-image: url("../assets/images/background.png");
+    background-image: url("/images/background.png");
   }
   &-second {
-    background-image: url("../assets/images/background-second.png");
+    background-image: url("/images/background-second.png");
   }
   &-info {
-    background-image: url("../assets/images/background-info.png");
-  }
-}
-
-.title-storent {
-  font-size: 4rem;
-  font-family: "Darker Grotesque", sans-serif;
-  color: white;
-  line-height: 0.9;
-}
-
-// Text
-.text-error {
-  color: red !important;
-  .v-icon {
-    color: red !important;
+    background-image: url("/images/background-info.png");
   }
 }
 
 .theme--light.v-icon {
   color: red !important;
 }
-
-// #content {
-//   height: 70%;
-// }
 
 .v-application .white--text {
   color: gray !important;

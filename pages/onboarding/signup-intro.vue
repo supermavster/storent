@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  layout: 'signup-intro'
+  layout: 'onboarding/signup-intro'
 }
 </script>
 

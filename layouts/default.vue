@@ -5,7 +5,7 @@
         <v-col class="fill-height" cols="12" sm="12" md="12">
           <v-row class="mx-auto" elevation="12">
             <a to="/" class="mx-6 my-6 py-6 px-6">
-              <img src="../assets/images/logo.png">
+              <img src="/images/logo.png">
             </a>
           </v-row>
           <v-row id="content" align="center" justify="center">
@@ -14,7 +14,7 @@
             </v-col>
             <v-col cols="6" sm="6" md="6" class="main-box">
               <div class="circle" />
-              <img class="boxs" src="../assets/images/main-boxs.png" width="100%" height="auto">
+              <img class="boxs" src="/images/main-boxs.png" width="100%" height="auto">
             </v-col>
           </v-row>
         </v-col>
@@ -26,8 +26,7 @@
 <script>
 export default {
   data () {
-    return {
-    }
+    return {}
   }
 }
 </script>

@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  layout: 'information'
+  layout: 'onboarding/information'
 }
 </script>
 

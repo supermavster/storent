@@ -1,0 +1,22 @@
+// Buttons
+.btn-storent {
+  &-main {
+    background-color: $main-color;
+  }
+  &-second {
+    background-color: $second-color;
+  }
+  &-main,
+  &-second {
+    color: white !important;
+    width: 417.96px;
+    font-family: "Darker Grotesque Extra Bold", sans-serif;
+    font-size: 15px;
+  }
+}
+
+// A href
+.link-storent {
+  color: $main-color;
+  text-decoration: none;
+}

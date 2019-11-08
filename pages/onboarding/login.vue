@@ -18,14 +18,27 @@
         <h1 class="title-storent">
           Bienvenido de nuevo
         </h1>
-        <v-text-field v-model="form.email" color="white" label="Usuario" required />
-        <v-text-field
-          v-model="form.password"
-          :type="showPassword ? 'text' : 'password'"
-          color="white"
-          label="Contraseña"
-          required
-        />
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="my-2">
+          <v-text-field
+            v-model="form.email"
+            color="#FFFFFF"
+            label="Usuario"
+            required
+            class="set-white"
+          />
+          <v-text-field
+            v-model="form.password"
+            :type="showPassword ? 'text' : 'password'"
+            color="white"
+            label="Contraseña"
+            class="set-white"
+            required
+          />
+        </div>
         <v-btn x-large class="btn-storent-second mr-4" @click="login($event)">
           Iniciar Sesión
         </v-btn>
@@ -36,7 +49,7 @@
 
 <script>
 export default {
-  layout: 'login',
+  layout: 'onboarding/login',
   data () {
     return {
       errors: [],
@@ -88,12 +101,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.theme--light.v-text-field > .v-input__control > .v-input__slot:before {
-  border-color: white;
+label,.v-label,label.v-label.theme--light {
+  color: white;
+}
+.v-input__slot:before {
+  color: white;
+  border-color: white !important;
 }
 
-.theme--light.v-input:not(.v-input--is-disabled) input,
-.theme--light.v-input:not(.v-input--is-disabled) textarea {
-  color: white;
+input {
+  color: white !important;
+}
+.v-input__slot:before {
+  border-color: white !important;
 }
 </style>

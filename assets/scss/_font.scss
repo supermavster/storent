@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Darker Grotesque";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonst/DarkerGrotesque-Regular.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Darker Grotesque Bold";
+  font-style: normal;
+  font-weight: bolder;
+  font-display: swap;
+  src: url(/fonst/DarkerGrotesque-Bold.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Darker Grotesque Black";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonst/DarkerGrotesque-Black.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Darker Grotesque Extra Bold";
+  font-style: normal;
+  font-weight: bolder;
+  font-display: swap;
+  src: url(/fonst/DarkerGrotesque-ExtraBold.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Darker Grotesque Light";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonst/DarkerGrotesque-Light.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Darker Grotesque Medium";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonst/DarkerGrotesque-Medium.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Darker Grotesque SemiBold";
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonst/DarkerGrotesque-SemiBold.ttf) format("ttf");
+}
+
+* {
+  font-family: "Darker Grotesque", sans-serif;
+  text-justify: inter-word;
+}
+
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+h1 {
+  font-family: "Darker Grotesque", sans-serif;
+  font-size: 4rem;
+  line-height: 0.8;
+}
+
+.text-bold {
+  font-family: "Darker Grotesque Bold", sans-serif;
+  font-weight: bold;
+}
+
+.title-storent {
+  font-size: 4rem;
+  font-family: "Darker Grotesque", sans-serif;
+  color: white;
+  line-height: 0.9;
+}
+
+// Text
+.text-error {
+  color: red !important;
+  .v-icon {
+    color: red !important;
+  }
+}
