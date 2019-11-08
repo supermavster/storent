@@ -80,10 +80,10 @@ export default {
         .then((response) => {
           if (response.status === 200 && response.data.code === 100) {
             // Get Access Token
-            this.form.authToken = response.data.data.authToken
             this.$cookie.set('authToken', response.data.data.authToken)
             this.$cookie.set('uid', response.data.data.uid)
-            this.form.uid = response.data.data.uid
+            // Change View
+            this.$router.push({ path: '/dashboard', force: true })
           } else {
             this.alert = response.data.data.message
           }

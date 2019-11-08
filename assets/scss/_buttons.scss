@@ -1,17 +1,22 @@
 // Buttons
 .btn-storent {
-  &-main {
-    background-color: $main-color;
-  }
-  &-second {
-    background-color: $second-color;
-  }
   &-main,
   &-second {
     color: white !important;
     width: 417.96px;
     font-family: "Darker Grotesque Extra Bold", sans-serif;
     font-size: 15px;
+  }
+
+  &-main {
+    background-color: $main-color;
+  }
+  &-second {
+    background-color: $second-color;
+  }
+  &-navbar {
+    background-color: $main-color;
+    width: 200px;
   }
 }
 
