@@ -4,7 +4,6 @@
       <Banner />
       <h1> Que deseas almacenar? </h1>
       <Categories />
-       
     </v-flex>
   </v-layout>
 </template>
