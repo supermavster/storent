@@ -4,9 +4,9 @@
       <v-container class="fill-height storent-background-main" fluid>
         <v-col class="fill-height" cols="12" sm="12" md="12">
           <v-row class="mx-auto" elevation="12">
-            <a to="/index" class="mx-2 my-2">
+            <v-btn text to="/" class="mx-2 my-2">
               <img height="30" src="/images/logo-white.png">
-            </a>
+            </v-btn>
           </v-row>
           <v-row id="content">
             <v-col cols="4" sm="4" md="4" class="my-10 mx-3">

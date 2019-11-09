@@ -20,7 +20,10 @@
         </v-alert>
       </div>
       <v-col class="text-center" cols="12" sm="12">
-        <div style>
+        <h1 class="title-storent text-center">
+          Usuario nuevo
+        </h1>
+        <div>
           <v-text-field
             v-model="form.name"
             single-line
@@ -69,7 +72,6 @@
             single-line
             :rules="[rules.requiredSingle]"
           />
-
           <v-col class="text-left" cols="12" sm="12">
             <v-checkbox
               v-model="form.checkbox"
@@ -78,10 +80,11 @@
               label="Acepta términos y condiciones"
               data-vv-name="checkbox"
               type="checkbox"
+              class="color-check"
               required
-              style="height:25px"
+              style="height:25px; margin:0"
             />
-            <v-btn text small color="primary" class="mx-5">
+            <v-btn text small class="color-link mx-5">
               Leer terminos y condiciones
             </v-btn>
           </v-col>
@@ -89,9 +92,9 @@
         <!-- Continue -->
         <v-btn
           id="register-user"
+          class="btn-storent-main mr-4"
           :disabled="disabledButton"
           :loading="loadingButton"
-          class="mr-4"
           @click="registerUser($event)"
         >
           Continuar
@@ -237,5 +240,37 @@ export default {
 .v-application .white--text {
   color: gray !important;
   caret-color: gray !important;
+}
+
+.title-storent {
+  color: black !important;
+  position: relative;
+  font-size: 2rem;
+}
+
+a {
+  font-size: 15px;
+  text-decoration: none;
+  color: $main-color;
+}
+
+.color-link {
+  color: $main-color;
+}
+
+.btn-storent-main {
+  font-size: 0.8rem;
+  height: 45px !important;
+  width: 200px !important;
+}
+
+.v-application .accent--text, .v-input--selection-controls__ripple.accent--text {
+    color: $main-color;
+    caret-color: $main-color;
+}
+
+.color-check {
+    color: $main-color;
+    caret-color: $main-color;
 }
 </style>
