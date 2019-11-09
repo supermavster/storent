@@ -3,9 +3,12 @@
   &-main,
   &-second {
     color: white !important;
-    width: 417.96px;
-    font-family: "Darker Grotesque Extra Bold", sans-serif;
-    font-size: 15px;
+    width: 300px;
+    font-family: "Darker Grotesque Bold", sans-serif;
+    font-size: 12px;
+    border-radius: 10px;
+    text-transform: initial !important;
+
   }
 
   &-main {

@@ -8,6 +8,11 @@ $main-color: #ff0062 !important;
 $main-color-dispose: #ff00624f !important;
 $second-color: #30242d !important;
 
+// input White
+.input-white, label {
+  color: white !important;
+  border-color: white !important;
+}
 /// Circle Template
 .circle {
   width: 1577px;

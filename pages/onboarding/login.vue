@@ -14,15 +14,14 @@
           {{ alert }}
         </v-alert>
       </div>
-      <v-col class="text-center" cols="12" sm="12">
-        <h1 class="title-storent">
+      <v-col class="" cols="12" sm="12">
+        <h1 class="title-storent text-left">
           Bienvenido de nuevo
         </h1>
         <br>
         <br>
         <br>
-        <br>
-        <div class="my-2">
+        <div class="input-white">
           <v-text-field
             v-model="form.email"
             color="#FFFFFF"
@@ -42,6 +41,18 @@
         <v-btn x-large class="btn-storent-second mr-4" @click="login($event)">
           Iniciar Sesión
         </v-btn>
+        <br>
+        <br>
+        <br>
+        <div class="text-left">
+          <a to="/onboarding/forget">
+            ¿Olvidaste tu contraseña?
+          </a>
+          <br>
+          <v-btn class="register" text to="/onboarding/signup-intro">
+            Registrarse
+          </v-btn>
+        </div>
       </v-col>
     </v-flex>
   </v-layout>
@@ -101,18 +112,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-label,.v-label,label.v-label.theme--light {
-  color: white;
+* {
+  background: transparent;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
-.v-input__slot:before {
-  color: white;
-  border-color: white !important;
+.title-storent {
+  font-weight: unset !important;
+  font-size: 3rem;
 }
-
-input {
+a {
+  font-size: 15px;
+  text-decoration: none;
   color: white !important;
 }
-.v-input__slot:before {
-  border-color: white !important;
+.register {
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+  color: white !important;
+  letter-spacing: normal;
+  padding: 0 !important;
 }
 </style>
