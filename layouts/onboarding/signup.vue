@@ -37,7 +37,7 @@
                 </v-btn>
               </div>
             </v-col>
-            <v-col cols="7" sm="7" md="7" class="main-box">
+            <v-col cols="7" sm="7" md="7" class="ml-10 main-box">
               <nuxt />
             </v-col>
           </v-row>

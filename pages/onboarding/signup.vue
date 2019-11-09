@@ -170,6 +170,18 @@ export default {
           const response = checkValues || 'Las contraseñas no son iguales.'
           this.showAlert(response)
           return response
+        },
+        check: () => {
+          // console.log(this.form.checkbox === '1')
+          const checkValues = this.form.checkbox === '1'
+          let response = checkValues || 'Debe aceptar terminos y condiciones.'
+          if (response === 'Debe aceptar terminos y condiciones.') {
+            this.showAlert(response)
+            response = false
+          } else {
+            response = true
+          }
+          return response
         }
       }
     }
@@ -189,22 +201,32 @@ export default {
     },
     registerUser (event) {
       event.preventDefault()
+
+      this.loadingButton = true
+      this.disabledButton = true
+
       // Check Values
       let check = false
+      check += this.rules.check()
       check += this.rules.passwordRepet(this.form.passwordRepet)
       check += this.rules.password(this.form.password)
       check += this.rules.number(this.form.phone, 'Celular')
       check += this.rules.email(this.form.email)
       check += this.rules.required(this.form.lastName, 'Apellidos')
       check += this.rules.required(this.form.name, 'Nombre')
+
       // Set Post
-      if (typeof check === 'string' || check instanceof String || check < 6) {
+      if (typeof check === 'string' || check instanceof String || check < 7) {
+        this.loadingButton = false
         this.disabledButton = false
         return
+      } else {
+        this.loadingButton = true
+        this.disabledButton = true
       }
 
-      this.loadingButton = true
-      this.disabledButton = true
+      this.alert = ''
+
       this.$store
         .dispatch(`register`, this.form)
         .then((response) => {
@@ -215,7 +237,7 @@ export default {
             this.success = response.data.message
             // console.log(response)
             // Change View
-            this.$router.push({ path: '/signup-intro-company', force: true })
+            this.$router.push({ path: '/onboarding/signup-intro-company', force: true })
           } else {
             this.alert = response.data.message
           }
@@ -228,9 +250,9 @@ export default {
               this.alert = error.response.data.data.message
             }
           }
-          this.loadingButton = false
-          this.disabledButton = false
         })
+      this.loadingButton = false
+      this.disabledButton = false
     }
   }
 }
