@@ -295,4 +295,8 @@ a {
     color: $main-color;
     caret-color: $main-color;
 }
+
+.v-icon, .v-icon.v-icon {
+  color: $main-color;
+}
 </style>

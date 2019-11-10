@@ -18,9 +18,9 @@
       <v-row>
         <v-col cols="12">
           <v-row align="center" justify="center">
-            <div class="mx-2">
+            <div class="mx-5">
               No. de Identificación - NIT
-              <v-row align="center" justify="center">
+              <v-row align="center" class="mx-0 my-2" justify="center">
                 <v-text-field
                   v-model="form.nit"
                   single-line
@@ -71,15 +71,20 @@
                 label="Paises"
                 persistent-hint
                 return-object
+                style="min-width: 430px;max-width: 430px;width: 430px;"
                 single-line
                 @change="getStates"
               />
-              <v-row align="center" justify="center">
+              <v-row
+                align="center"
+                justify="center"
+              >
                 <!-- States -->
                 <v-select v-if="!location.states" disabled label="Departamentos" class="mx-2" />
                 <v-select
                   v-else
                   v-model="form.location.state"
+                  style="min-width: 200px;max-width: 200px;width: 200px;"
                   :items="location.states"
                   item-text="name"
                   item-value="stateId"
@@ -95,6 +100,7 @@
                 <v-select
                   v-else
                   v-model="form.location.city"
+                  style="min-width: 200px;max-width: 200px;width: 200px;"
                   :items="location.cities"
                   item-text="name"
                   item-value="cityId"
@@ -122,7 +128,7 @@
                 :rules="[rules.requiredSingle]"
               />
             </div>
-            <div class="mx-2">
+            <div class="mx-5">
               <v-file-input label="File input" />Calidad tributaria y Calidad económica CIIU
               <br>Código CIIU
               <v-text-field
@@ -152,9 +158,24 @@
             </div>
           </v-row>
           <v-row align="center" justify="center">
-            <v-file-input label="File input" />
-            <v-file-input label="File input" />
-            <v-file-input label="File input" />
+            <v-row align="center" justify="center">
+              <v-icon left>
+                mdi-paperclip
+              </v-icon>
+              <v-file-input label="File input" prepend-icon="" />
+            </v-row>
+            <v-row align="center" justify="center">
+              <v-icon left>
+                mdi-paperclip
+              </v-icon>
+              <v-file-input clearable label="File input" prepend-icon="" />
+            </v-row>
+            <v-row align="center" justify="center">
+              <v-icon left>
+                mdi-paperclip
+              </v-icon>
+              <v-file-input id="tempFile" label="File input" prepend-icon="" />
+            </v-row>
           </v-row>
           <v-row align="center" justify="center">
             <!-- Continue -->
@@ -162,7 +183,7 @@
               id="register-user"
               :disabled="disabledButton"
               :loading="loadingButton"
-              class="mr-4"
+              class="btn-storent-main mr-4"
               @click="registerCompany($event)"
             >
               Continuar
@@ -178,7 +199,7 @@
 // import { ValidationProvider, extend } from 'vee-validate'
 
 export default {
-  layout: 'onboarding/signup',
+  layout: 'onboarding/signup-company',
   data () {
     return {
       errors: [],
@@ -448,5 +469,11 @@ export default {
 .v-application .white--text {
   color: gray !important;
   caret-color: gray !important;
+}
+
+.btn-storent-main {
+  font-size: 0.8rem;
+  height: 45px !important;
+  width: 200px !important;
 }
 </style>
