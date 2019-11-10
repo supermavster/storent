@@ -3,7 +3,10 @@
     <v-flex class="text-center">
       <v-col cols="12" sm="12">
         <h1 class="title-storent text-left">
-          Bienvenido de nuevo
+          Restablecer<br>Contraseña
+        </h1>
+        <h1 class="title-storent text-left">
+          ¿Has olvidado tu clave o usuario?
         </h1>
         <br>
         <!--  Error Elements -->
@@ -19,24 +22,17 @@
             {{ alert }}
           </v-alert>
         </div>
+        <b>Ingresa el correo electrónico registrado en Storent</b>
         <br>
+        Te enviaremos un correo y un mensaje SMS al teléfono vinculado con un código de 4 digitos para restablecer tu contraseña
         <div class="input-white">
           <v-text-field
             v-model="form.email"
             color="#FFFFFF"
-            label="Usuario"
+            label="Correo electrónico"
             required
             :rules="[rules.requiredSingle]"
             class="set-white"
-          />
-          <v-text-field
-            v-model="form.password"
-            :type="showPassword ? 'text' : 'password'"
-            color="white"
-            label="Contraseña"
-            :rules="[rules.requiredSingle]"
-            class="set-white"
-            required
           />
         </div>
         <v-btn
@@ -46,16 +42,12 @@
           :loading="loadingButton"
           @click="login($event)"
         >
-          Iniciar Sesión
+          Restablecer
         </v-btn>
         <br>
         <br>
         <br>
         <div class="text-left">
-          <v-btn text class="forget" to="/onboarding/forget">
-            ¿Olvidaste tu contraseña?
-          </v-btn>
-          <br>
           <v-btn class="register" text to="/onboarding/signup-intro">
             Registrarse
           </v-btn>
