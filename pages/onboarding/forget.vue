@@ -4,6 +4,7 @@
       <v-col cols="12" sm="12">
         <!--  Error Elements -->
         <div>
+          <CheckConection />
           <v-alert
             v-if="alert !== ''"
             type="error"
@@ -169,8 +170,15 @@
 </template>
 
 <script>
+
+// Library
+import CheckConection from '~/components/checkConection.vue'
+
 export default {
   layout: 'onboarding/login',
+  components: {
+    CheckConection
+  },
   data () {
     return {
       step: 4,

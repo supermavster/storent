@@ -7850,6 +7850,11 @@ uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
+v-offline@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/v-offline/-/v-offline-1.1.0.tgz#f5f739bf8cdade549e6d08af3048c549c5c9f315"
+  integrity sha512-/6tQWt/bvgdGYWF34ghAs4xHQ+vavZ0V2uSULG6XlK132eZ1ST8z/zGEw/hYaTT7lZGL0ekqWmdEfr0jmER6xA==
+
 v8-compile-cache@^2.0.3:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-2.1.0.tgz#e14de37b31a6d194f5690d67efc4e7f6fc6ab30e"
