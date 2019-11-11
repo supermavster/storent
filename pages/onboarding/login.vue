@@ -142,7 +142,12 @@ export default {
       this.$store
         .dispatch(`login`, this.form)
         .then((response) => {
+          console.log(response)
           if (response.status === 200 && response.data.code === 100) {
+            const tries = parseInt(response.data.data.tries)
+            if (tries >= 3) {
+              this.$router.push({ path: '/onboarding/forget', force: true, params: { step: false } })
+            }
             // Get Access Token
             this.$cookie.set('authToken', response.data.data.authToken)
             this.$cookie.set('uid', response.data.data.uid)
@@ -155,7 +160,16 @@ export default {
         .catch((error) => {
           if (error.response) {
             if (error.response.status === 400) {
-              this.alert = error.response.data.data.message
+              if (error.response.data.code === 102) {
+                const check = (error.response.data.data.check)
+                if (!check) {
+                  this.$router.push({ path: '/onboarding/forget', force: true, params: { step: false } })
+                } else {
+                  this.alert = error.response.data.data.message
+                }
+              } else {
+                this.alert = error.response.data.data.message
+              }
             }
           }
         })

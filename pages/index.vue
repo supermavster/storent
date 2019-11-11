@@ -33,5 +33,6 @@ export default {}
 <style lang="scss" scoped>
 * {
   background-color: transparent;
+  color: black;
 }
 </style>

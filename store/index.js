@@ -89,6 +89,23 @@ export const actions = {
         })
     })
   },
+  forget (vuexContext, form) {
+    return new Promise((resolve, reject) => {
+      const config = actions.makeHeader(0, form.accessToken) // Access Token
+      // Create formdata
+      const dataSend = new FormData()
+      dataSend.append('email', form.email)
+      // Make Actions
+      axios
+        .post(process.env.URL_API + 'auth/recovery', dataSend, config)
+        .then(function (json) {
+          resolve(json)
+        })
+        .catch(function (error) {
+          reject(error)
+        })
+    })
+  },
   register (vuexContext, form) {
     return new Promise((resolve, reject) => {
       const config = actions.makeHeader(0, form.accessToken) // Access Token
