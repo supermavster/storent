@@ -2,13 +2,6 @@
   <v-layout>
     <v-flex class="text-center">
       <v-col cols="12" sm="12">
-        <h1 v-if="step === 1 || step === 3" class="title-storent text-left">
-          Restablecer<br>Contraseña
-        </h1>
-        <h1 v-if="step === 2" class="title-storent text-left">
-          ¿Has olvidado tu clave o usuario?
-        </h1>
-        <br>
         <!--  Error Elements -->
         <div>
           <v-alert
@@ -27,59 +20,44 @@
             {{ success }}
           </v-alert>
         </div>
-        <div v-if="step !== 3">
-        <b>Ingresa el correo electrónico registrado en Storent</b>
-        <br>
-        Te enviaremos un correo y un mensaje SMS al teléfono vinculado con un código de 4 digitos para restablecer tu contraseña
+        <div v-if="step === 1">
+          <!-- Title -->
+          <h1 class="title-storent text-left">
+            ¿Has olvidado tu clave o usuario?
+          </h1>
+          <!-- Content -->
+          <div>
+            <b>Ingresa el correo electrónico registrado en Storent</b>
+            <br>
+            Te enviaremos un correo y un mensaje SMS al teléfono vinculado con un código de 4 digitos para restablecer tu contraseña
+          </div>
+          <div class="input-white">
+            <v-text-field
+              v-model="form.email"
+              color="#FFFFFF"
+              label="Correo electrónico"
+              required
+              :rules="[rules.requiredSingle]"
+              class="set-white"
+            />
+            <v-btn
+              x-large
+              class="btn-storent-second my-1 mr-4"
+              :disabled="disabledButton"
+              :loading="loadingButton"
+              @click="forget($event)"
+            >
+              Restablecer
+            </v-btn>
+          </div>
         </div>
-        <div v-else>
-          Ingresa una nueva contraseña
-          <v-text-field
-            v-model="form.password"
-            single-line
-            color="white"
-            label="Contraseña"
-            required
-            :rules="[rules.requiredSingle]"
-          />
-          <v-text-field
-            v-model="form.passwordRepet"
-            color="white"
-            label="Confirmar contraseña"
-            required
-            single-line
-            :rules="[rules.requiredSingle]"
-          />
-          <v-btn
-            x-large
-            class="btn-storent-second my-1 mr-4"
-            :disabled="disabledButton"
-            :loading="loadingButton"
-            @click="recovery($event)"
-          >
-            Restablecer
-          </v-btn>
-        </div>
-        <div v-if="step === 1" class="input-white">
-          <v-text-field
-            v-model="form.email"
-            color="#FFFFFF"
-            label="Correo electrónico"
-            required
-            :rules="[rules.requiredSingle]"
-            class="set-white"
-          />
-          <v-btn
-            x-large
-            class="btn-storent-second my-1 mr-4"
-            :disabled="disabledButton"
-            :loading="loadingButton"
-            @click="forget($event)"
-          >
-            Restablecer
-          </v-btn>
-        </div>
-        <div v-if="step === 2" class="input-white">
+        <div v-if="step === 2">
+          <!-- Title -->
+          <h1 class="title-storent text-left">
+            Restablecer<br>Contraseña
+          </h1>
+          <b>Hemos enviado a tu celular un código de 4 digitos para restablecer tu contraseña</b>
+          <!-- Content -->
           <v-row class="mx-1" align="center" justify="center">
             <v-text-field
               v-model="code.one"
@@ -87,7 +65,7 @@
               required
               placeholder="   0"
               :rules="[rules.requiredSingle]"
-              class="set-white"
+              class="set-white-exception"
             />
 
             <v-text-field
@@ -96,7 +74,7 @@
               required
               placeholder="   0"
               :rules="[rules.requiredSingle]"
-              class="set-white"
+              class="set-white-exception"
             />
 
             <v-text-field
@@ -105,7 +83,7 @@
               placeholder="   0"
               required
               :rules="[rules.requiredSingle]"
-              class="set-white"
+              class="set-white-exception"
             />
 
             <v-text-field
@@ -114,7 +92,7 @@
               placeholder="   0"
               required
               :rules="[rules.requiredSingle]"
-              class="set-white"
+              class="set-white-exception"
             />
           </v-row>
           <v-btn
@@ -126,8 +104,57 @@
           >
             Continuar
           </v-btn>
+          <br>
           Si el correo no se encuentra en tu bandeja de entrada contactanos aquí
         </div>
+        <div v-if="step === 3">
+          <h1 class="title-storent text-left">
+            Restablecer<br>Contraseña
+          </h1>
+          <div>
+            Ingresa una nueva contraseña
+            <v-text-field
+              v-model="form.password"
+              single-line
+              color="white"
+              label="Contraseña"
+              required
+              :rules="[rules.requiredSingle]"
+            />
+            <v-text-field
+              v-model="form.passwordRepet"
+              color="white"
+              label="Confirmar contraseña"
+              required
+              single-line
+              :rules="[rules.requiredSingle]"
+            />
+            <v-btn
+              x-large
+              class="btn-storent-second my-1 mr-4"
+              :disabled="disabledButton"
+              :loading="loadingButton"
+              @click="recovery($event)"
+            >
+              Restablecer
+            </v-btn>
+          </div>
+        </div>
+        <div v-if="step === 4">
+          <h1 class="title-storent text-left">
+            ¡Tu contraseña fue<br>restablecida<br>exitosamente!
+          </h1>
+          <b>Ahora podrás ingresar a Storent</b>
+          <v-btn
+            x-large
+            class="btn-storent-second my-1 mr-4"
+            text
+            to="/onboarding/login"
+          >
+            Ingresar
+          </v-btn>
+        </div>
+        <!-- Footer -->
         <br>
         <br>
         <br>
@@ -146,7 +173,7 @@ export default {
   layout: 'onboarding/login',
   data () {
     return {
-      step: 3,
+      step: 4,
       errors: [],
       alert: '',
       success: '',
@@ -215,7 +242,10 @@ export default {
     async initProcess () {
       const accessToken = await this.$store.dispatch(`getAccessToken`)
       this.form.accessToken = accessToken
-      this.step = this.$route.params.step
+      const step = this.$route.params.step
+      if (typeof step !== 'undefined' && step !== null) {
+        this.step = this.$route.params.step
+      }
     },
     showAlert (response) {
       if (typeof response === 'string' || response instanceof String) {
@@ -394,6 +424,12 @@ a {
 }
 
 .set-white {
+  margin: auto 10px;
+  color: white !important;
+  text-align: center;
+}
+
+.set-white-exception {
   width: 20px;
   margin: auto 10px;
   color: white !important;
