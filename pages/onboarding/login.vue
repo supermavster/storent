@@ -163,7 +163,7 @@ export default {
               if (error.response.data.code === 102) {
                 const check = (error.response.data.data.check)
                 if (!check) {
-                  this.$router.push({ path: '/onboarding/forget', force: true, params: { step: false } })
+                  this.$router.push({ path: '/onboarding/forget', force: true, params: { step: 2 } })
                 } else {
                   this.alert = error.response.data.data.message
                 }

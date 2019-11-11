@@ -106,6 +106,40 @@ export const actions = {
         })
     })
   },
+  validateCode (vuexContext, form) {
+    return new Promise((resolve, reject) => {
+      const config = actions.makeHeader(0, form.accessToken) // Access Token
+      // Create formdata
+      const dataSend = new FormData()
+      dataSend.append('code', form.code)
+      // Make Actions
+      axios
+        .post(process.env.URL_API + 'auth/valid-code', dataSend, config)
+        .then(function (json) {
+          resolve(json)
+        })
+        .catch(function (error) {
+          reject(error)
+        })
+    })
+  },
+  recovery (vuexContext, form) {
+    return new Promise((resolve, reject) => {
+      const config = actions.makeHeader(0, form.accessToken) // Access Token
+      // Create formdata
+      const dataSend = new FormData()
+      dataSend.append('code', form.code)
+      // Make Actions
+      axios
+        .post(process.env.URL_API + 'auth/change-password', dataSend, config)
+        .then(function (json) {
+          resolve(json)
+        })
+        .catch(function (error) {
+          reject(error)
+        })
+    })
+  },
   register (vuexContext, form) {
     return new Promise((resolve, reject) => {
       const config = actions.makeHeader(0, form.accessToken) // Access Token
