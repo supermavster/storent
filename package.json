@@ -13,9 +13,9 @@
     "google": "open -a Google\\ Chrome --args --disable-web-security --user-data-dir"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.13.6",
     "cookie-universal-nuxt": "^2.0.18",
-    "nuxt": "^2.0.0",
+    "nuxt": "^3.12.4",
     "slick-carousel": "^1.8.1",
     "v-offline": "^1.1.0",
     "vee-validate": "^3.0.11"
